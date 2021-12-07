@@ -2,6 +2,7 @@ package com.iitp.csp.domain.member;
 
 import com.iitp.csp.domain.member.entity.Member;
 import com.iitp.csp.domain.member.entity.MemberRepository;
+import com.iitp.csp.domain.member.entity.dto.MemberLoginReqDto;
 import com.iitp.csp.domain.member.entity.dto.MemberPutReqDto;
 import com.iitp.csp.domain.member.entity.dto.MemberReqDto;
 import com.iitp.csp.domain.member.entity.dto.MemberResDto;
@@ -33,14 +34,13 @@ public class MemberService{
     }
 
     public MemberResDto getMember(Long id) {
-        Member member = memberRepository.findById(id).orElseThrow(() -> new RuntimeException("해당유저없음"));
+        Member member = memberRepository.findById(id).orElseThrow(() -> new RuntimeException("해당 유저 없음"));
         return new MemberResDto(member);
     }
 
     @Transactional
     public Long putMember(Long id, MemberPutReqDto dto) {
-        Member member = memberRepository.findById(id).orElseThrow(() -> new RuntimeException("해당유저없음"));
-
+        Member member = memberRepository.findById(id).orElseThrow(() -> new RuntimeException("해당 유저 없음"));
         member.setData(dto.getEmail(), dto.getBirth(), dto.getPhone(), dto.getNickName());
         Member result = memberRepository.save(member);
         return result.getMemberId();
@@ -59,10 +59,14 @@ public class MemberService{
         return memberRepository.findAll(page);
     }
 
-//    public Long loginMember(Long id, MemberLoginReqDto dto) {
-//        Member member = memberRepository.findById(id).orElseThrow(() -> new RuntimeException("해당유저없음"));
-//
-//    }
+    public Member loginMember(MemberLoginReqDto dto) {
+        Member member = memberRepository.findByIdName(dto.getIdName()).orElseThrow(() -> new RuntimeException("해당 유저 없음"));
+        if (passwordEncoder.matches(dto.getPassword(), member.getPassword())) {
+            return member;
+           }
+            throw new RuntimeException("비밀번호 틀림");
+
+    }
 }
 
 //    Member member = memberRepository.findByEmail(email)

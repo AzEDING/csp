@@ -18,31 +18,31 @@ public class CommentController {
 
     @PostMapping(value = "/notice/{id}/comment")
     @ApiOperation(value = "댓글 작성")
-    public Long postComment(@RequestBody CommentReqDto dto) {
-        return commentService.postComment(dto);
+    public Long postComment(@PathVariable Long id, @RequestBody CommentReqDto dto) {
+        return commentService.postComment(id,dto);
     }
 
-    @GetMapping(value = "/notice/{id}/comment/{id}")
+    @GetMapping(value = "/notice/{id}/comment/{comId}")
     @ApiOperation(value = "댓글 조회")
-    public CommentResDto getComment(@RequestParam Long id)
+    public CommentResDto getComment(@PathVariable Long id,@PathVariable Long comId)
     {
-        return commentService.getComment(id);
+        return commentService.getComment(id,comId);
     }
 
     @PutMapping(value = "/notice/{id}/comment/{comId}")
     @ApiOperation(value = "댓글 수정")
-    public Long putComment(@RequestParam Long comId, @RequestBody CommentPutReqDto dto) {
-        return commentService.putComment(comId,dto);
+    public Long putComment(@PathVariable Long id, @PathVariable Long comId, @RequestBody CommentPutReqDto dto) {
+        return commentService.putComment(id,comId,dto);
     }
     @DeleteMapping(value = "/notice/{id}/comment/{comId}")
     @ApiOperation(value = "댓글 삭제")
-    public void deleteComment(@RequestParam Long comId) {
-        commentService.deleteComment(comId);
+    public void deleteComment(@PathVariable Long id,@PathVariable Long comId) {
+        commentService.deleteComment(id,comId);
     }
 
     @GetMapping(value = "/notice/{id}/comment")
     @ApiOperation(value = "댓글 창")
-    public CommentPageResDto getCommentPage(@PageableDefault(size=5, page = 0, sort = "createdDate", direction = Sort.Direction.DESC) Pageable page) {
-        return new CommentPageResDto(commentService.getCommentPage(page));
+    public CommentPageResDto getCommentPage(@PathVariable Long id, @PageableDefault(size=5, page = 0, sort = "createdDate", direction = Sort.Direction.ASC) Pageable page) {
+        return new CommentPageResDto(commentService.getCommentPage(id,page));
     }
 }

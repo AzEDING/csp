@@ -24,20 +24,20 @@ public class NoticeController {
 
     @GetMapping(value = "/notice/{id}")
     @ApiOperation(value = "공지 조회")
-    public NoticeResDto getNotice(@RequestParam Long id)
+    public NoticeResDto getNotice(@PathVariable Long id)
     {
         return noticeService.getNotice(id);
     }
 
     @PutMapping(value = "/notice/{id}")
     @ApiOperation(value = "공지 수정")
-    public Long putNotice(@RequestParam Long id, @RequestBody NoticePutReqDto dto) {
+    public Long putNotice(@PathVariable Long id, @RequestBody NoticePutReqDto dto) {
         return noticeService.putNotice(id, dto);
     }
 
     @DeleteMapping(value = "/notice/{id}")
     @ApiOperation(value = "공지 삭제")
-    public void deleteNotice(@RequestParam Long id) {
+    public void deleteNotice(@PathVariable Long id) {
         noticeService.deleteNotice(id);
     }
 
@@ -45,7 +45,7 @@ public class NoticeController {
 
     @GetMapping(value = "/notice")
     @ApiOperation(value = "공지 전체 조회")
-    public NoticePageResDto getNoticePage(@PageableDefault(size=20, page = 0, sort = "createdDate", direction = Sort.Direction.DESC) Pageable page) {
+    public NoticePageResDto getNoticePage(@PageableDefault(size=20, page = 1, sort = "createdDate", direction = Sort.Direction.DESC) Pageable page) {
         return new NoticePageResDto(noticeService.getNoticePage(page));
     }
 }

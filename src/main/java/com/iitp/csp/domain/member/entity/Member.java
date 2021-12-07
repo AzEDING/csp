@@ -21,11 +21,11 @@ public class Member extends BaseTimeEntity {
     private Long memberId;
 
     // name
-    @Column (name = "id_name")
+    @Column(name = "id_name")
     private String idName;
 
     // paswword
-    @Column(name= "password")
+    @Column(name = "password")
     private String password;
 
     @Column(name = "email")
@@ -44,17 +44,16 @@ public class Member extends BaseTimeEntity {
     private Boolean contract;
 
 
-    public void setData( String email,String birth, String phone, String nickName){
-        this.email  = email;
+    public void setData(String email, String birth, String phone, String nickName) {
+        this.email = email;
         this.birth = birth;
         this.phone = phone;
         this.nickName = nickName;
 
     }
-    public void setLogin( String idName, String password) {
+
+    public void setLogin(String idName, String password) {
         this.idName = idName;
         this.password = password;
     }
-
-
 }

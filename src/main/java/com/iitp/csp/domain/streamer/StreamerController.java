@@ -22,19 +22,19 @@ public class StreamerController {
 
     @GetMapping(value = "/streamer/{id}")
     @ApiOperation(value = "스트리머 게시물 조회")
-    public StreamerResDto getStreamer(@RequestParam Long id) {
+    public StreamerResDto getStreamer(@PathVariable Long id) {
         return streamerService.getStreamer(id);
     }
 
     @PutMapping(value = "/streamer/{id}")
     @ApiOperation(value = "스트리머 게시물 수정")
-    public Long putStreamer(@RequestParam Long id, @RequestBody StreamerPutReqDto dto) {
+    public Long putStreamer(@PathVariable Long id, @RequestBody StreamerPutReqDto dto) {
         return streamerService.putStreamer(id, dto);
     }
 
     @DeleteMapping(value = "/streamer/{id}")
     @ApiOperation(value = "스트리머 게시물 삭제")
-    public void deleteStreamer(@RequestParam Long id){
+    public void deleteStreamer(@PathVariable Long id){
         streamerService.deleteStreamer(id);
     }
 

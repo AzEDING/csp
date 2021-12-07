@@ -24,19 +24,19 @@ public class IllustController {
 
     @GetMapping(value = "/illust/{id}")
     @ApiOperation(value = "일러 조회")
-    public IllustResDto getIllust(@RequestParam Long id) {
+    public IllustResDto getIllust(@PathVariable Long id) {
         return illustService.getIllust(id);
     }
 
     @PutMapping(value = "/illust/{id}")
     @ApiOperation(value = "일러 수정")
-    public Long putIllust(@RequestParam Long id, @RequestBody IllustPutReqDto dto) {
+    public Long putIllust(@PathVariable Long id, @RequestBody IllustPutReqDto dto) {
         return illustService.putIllust(id, dto);
     }
 
     @DeleteMapping(value = "/illust/{id}")
     @ApiOperation(value = "일러 삭제")
-    public void deleteIllust(@RequestParam Long id) {
+    public void deleteIllust(@PathVariable Long id) {
         illustService.deleteIllust(id);
     }
 

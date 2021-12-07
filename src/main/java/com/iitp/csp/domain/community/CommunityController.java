@@ -24,17 +24,17 @@ public class CommunityController {
 
     @GetMapping(value = "/community/{id}")
     @ApiOperation(value = "커뮤니티 조회")
-    public CommunityResDto getCommunity(@RequestParam Long id) { return communityService.getCommunity(id); }
+    public CommunityResDto getCommunity(@PathVariable Long id) { return communityService.getCommunity(id); }
 
     @PutMapping(value = "/community/{id}")
     @ApiOperation(value = "커뮤니티 수정")
-    public Long putCommunity(@RequestParam Long id, @RequestBody CommunityPutReqDto dto) {
+    public Long putCommunity(@PathVariable Long id, @RequestBody CommunityPutReqDto dto) {
         return communityService.putCommunity(id,dto);
     }
 
     @DeleteMapping(value = "/community/{id}")
     @ApiOperation(value = "커뮤니티 삭제")
-    public void deleteCommunity(@RequestParam Long id) {
+    public void deleteCommunity(@PathVariable Long id) {
         communityService.deleteCommunity(id);
     }
 

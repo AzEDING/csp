@@ -14,8 +14,6 @@ public class CommentReqDto {
     private String content;
     @ApiModelProperty(required = true, value = "작성자", example = "1")
     private Long memberId;
-    @ApiModelProperty(required = true, value = "게시글", example = "1")
-    private Long noticeId;
 
     public Comment toEntity() {
         return Comment.builder()

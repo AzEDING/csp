@@ -20,14 +20,14 @@ public class CspFileController {
 
     @GetMapping(value = "/file/{id}")
     @ApiOperation(value = "파일 다운")
-    public CspFileResDto getCspFile(@RequestParam Long id){
+    public CspFileResDto getCspFile(@PathVariable Long id){
         return cspFileService.getCspFile(id);
     }
 
 
     @DeleteMapping(value = "/file/{id}")
     @ApiOperation(value = "첨부 삭제")
-    public void deleteCspFile(@RequestParam Long id) {
+    public void deleteCspFile(@PathVariable Long id) {
         cspFileService.deleteCspFile(id);
     }
 }

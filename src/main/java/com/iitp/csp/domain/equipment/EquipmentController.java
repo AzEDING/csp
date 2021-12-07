@@ -22,16 +22,16 @@ public class EquipmentController {
 
     @GetMapping(value = "/equipment/{id}")
     @ApiOperation(value = "장비 게시물 조회")
-    public EquipmentResDto getEquipment(@RequestParam Long id) { return equipmentService.getEquipment(id); }
+    public EquipmentResDto getEquipment(@PathVariable Long id) { return equipmentService.getEquipment(id); }
 
     @PutMapping(value = "/equipment/{id}")
-    public Long putEquipment(@RequestParam Long id, @RequestBody EquipmentPutReqDto dto) {
+    public Long putEquipment(@PathVariable Long id, @RequestBody EquipmentPutReqDto dto) {
         return equipmentService.putEquipment(id,dto);
     }
 
     @DeleteMapping(value = "/equipment/{id}")
     @ApiOperation(value = "장비 게시물 수정")
-    public void deleteEquipment(@RequestParam Long id) { equipmentService.deleteEquipment(id); }
+    public void deleteEquipment(@PathVariable Long id) { equipmentService.deleteEquipment(id); }
 
     @GetMapping(value = "/equipment")
     @ApiOperation(value = "장비 게시물 전체 조회")
